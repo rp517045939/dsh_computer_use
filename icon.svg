@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Windows desktop control">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <rect x="11" y="13" width="42" height="29" rx="4" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M32 42v7" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 52h16" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M25 19v19l5-5 3.4 7 4-2-3.4-6.8 6.6-1.6z" fill="#e2e8f0"/>
+</svg>

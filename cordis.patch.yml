@@ -1,0 +1,49 @@
+# Bundle patch for dsh-windows-mcp.
+#
+# The plugin owns one MCP server for the whole Host: it provisions (or attaches) a
+# Python 3.14 environment, installs the upstream Windows-MCP release into it, and
+# registers the engine through ctx.mcpManager. No static dsh-mcp-client row is
+# needed, and nothing here points at a venv that the user manages by hand.
+#
+# `serverName` is the tool namespace: tools appear as mcp__windows__<tool>, which is
+# the same name the hand-written dsh-mcp-client row used, so prompts and skills keep
+# working after migration. A machine that still composes such a static row with
+# serverName "windows" must disable it first — the MCP manager refuses two instances
+# under one name. Set `winmcp` here to run both side by side while evaluating.
+- insert:
+    - id: windows-mcp
+      name: "dsh-windows-mcp"
+      config:
+        serverName: windows
+        init:
+          mode: advise            # detect | advise | setup | auto
+        engine:
+          dir: ""                 # default: $DSH_HOME/windows-mcp
+          attachVenv: ""          # migration only; makes the plugin non-self-contained
+        python:
+          path: ""                # default: py -3.14 -> PATH -> well-known installs -> payload runtime
+          minVersion: "3.14"
+        engineVersion: "0.9.0"    # pinned on first install; updates follow the release channel
+        tools:
+          exclude:
+            - PowerShell
+            - Registry
+            - FileSystem
+            - Process
+          extraArgs: []
+        server:
+          startupTimeoutMs: 60000
+          toolCallTimeoutMs: 120000
+        update:
+          auto: true              # install new releases unattended, with automatic rollback
+          applyOnStart: true      # check 30 s after activation instead of only on demand
+          checkIntervalHours: 24
+          debounceHours: 24       # at most one unattended upgrade per day
+          maxAttempts: 2          # stop retrying a version that failed twice
+          minFreeDiskMb: 1536
+        payload:
+          dir: ""                 # default: <plugin>/payload (offline interpreter and/or wheelhouse)
+        env:
+          ANONYMIZED_TELEMETRY: "false"
+          WINDOWS_MCP_DISABLE_FLASH: "1"
+          WINDOWS_MCP_SCREENSHOT_SCALE: "0.5"

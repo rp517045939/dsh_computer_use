@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Windows 桌面操作",
+    "description": "探测本机 Python 3.14，配置 Windows-MCP 引擎并注册为本地 MCP 服务，提供截屏、鼠标与键盘操作工具。",
+    "detail": "docs/DETAIL.md"
+  }
+}

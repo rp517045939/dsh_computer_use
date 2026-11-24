@@ -1,0 +1,15 @@
+# Packaging output
+dist/
+
+# Offline payload: put a portable interpreter / wheelhouse here, never commit it
+payload/
+
+# Provisioned engine and diagnostics (lives under $DSH_HOME by default)
+node_modules/
+state.json
+*.log
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini

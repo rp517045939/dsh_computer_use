@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "${{ matrix.node }}"
+      - name: Syntax
+        run: |
+          node --check index.js
+          for f in lib/*.js scripts/*.mjs test/*.mjs; do node --check "$f"; done
+      - name: Logic checks
+        run: node test/logic.mjs
+      - name: Package build
+        run: node scripts/pack.mjs
+      - name: Upload package
+        if: matrix.node == 24
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsh-windows-mcp-package
+          path: dist/dsh-windows-mcp/
+          retention-days: 14

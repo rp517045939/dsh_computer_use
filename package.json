@@ -1,0 +1,56 @@
+{
+  "name": "dsh-windows-mcp",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Windows desktop automation for DeepSeek Harness: provisions and supervises the upstream Windows-MCP engine, registers it as one local MCP server, and tracks the release channel with automatic rollback.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "lib/*.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "scripts",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "windows",
+    "computer-use",
+    "mcp",
+    "desktop-automation"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rp517045939/dsh_computer_use.git"
+  },
+  "homepage": "https://github.com/rp517045939/dsh_computer_use#readme",
+  "bugs": {
+    "url": "https://github.com/rp517045939/dsh_computer_use/issues"
+  },
+  "author": "rp517045939",
+  "scripts": {
+    "pack": "node scripts/pack.mjs",
+    "migration-check": "node scripts/migration-check.mjs",
+    "test": "node test/logic.mjs",
+    "check": "node --check index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

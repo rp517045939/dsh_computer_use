@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Windows desktop control",
+    "description": "Detects a Python 3.14 interpreter, provisions the Windows-MCP engine, and registers it as one local MCP server for screen, mouse, and keyboard tools.",
+    "detail": "docs/DETAIL.md"
+  }
+}

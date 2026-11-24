@@ -1,0 +1,12 @@
+# Normalize line endings so Windows checkouts do not rewrite the tree.
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.zip binary
+*.whl binary
